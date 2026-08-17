@@ -1,0 +1,22 @@
+public class Problem2_MatrixMultiplication {
+    public static int[][] multiplyMatrices(int[][] A, int[][] B) throws MatrixMismatchException {
+        int rA = A.length, cA = A[0].length;
+        int rB = B.length, cB = B[0].length;
+
+        if (cA != rB) {
+            throw new MatrixMismatchException("Matrix dimensions mismatch: " +
+                    "Columns of A (" + cA + ") != Rows of B (" + rB + ")");
+        }
+
+        int[][] result = new int[rA][cB];
+
+        for (int i = 0; i < rA; i++) {
+            for (int j = 0; j < cB; j++) {
+                for (int k = 0; k < cA; k++) {
+                    result[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+        return result;
+    }
+}
